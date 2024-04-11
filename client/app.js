@@ -184,13 +184,13 @@ async function updateCommentsSection(gameId) {
     if (gameWrapper) {
       // Clear existing comments
       gameWrapper
-        .querySelectorAll(".comments-wrapper")
+        .querySelectorAll(".comments-individual")
         .forEach((comment) => comment.remove());
 
       // Append the updated comments to the game wrapper
       comments.forEach((comment) => {
         const newComment = `
-          <div class="comments-wrapper">
+          <div class="comments-individual">
             <p class="intro-comment">Comment from: ${comment.username}</p>
             <p>${comment.comment}</p>
           </div>
