@@ -11,7 +11,7 @@ const gameWrapper = document.getElementById("gameWrapper");
 // testServerConnection();
 async function getComments(gameId) {
   const commentsResponse = await fetch(
-    `http://localhost:8080/comments/?id=${gameId}`
+    `https://teched-week04-project.onrender.com/comments/?id=${gameId}`
   );
   const comments = await commentsResponse.json();
 
@@ -23,7 +23,9 @@ async function getGames() {
   gameWrapper.innerHTML = "";
 
   console.log("app.js Getting games...");
-  const gamesresponse = await fetch("http://localhost:8080/gamewinnersjoined");
+  const gamesresponse = await fetch(
+    "https://teched-week04-project.onrender.com/gamewinnersjoined"
+  );
   const gotyWinners = await gamesresponse.json();
   console.log(gotyWinners);
 
@@ -144,13 +146,16 @@ async function handleFormSubmission(event, gameId) {
     });
     console.log(jsonData);
 
-    const response = await fetch("http://localhost:8080/comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: jsonData
-    });
+    const response = await fetch(
+      "https://teched-week04-project.onrender.com/comments",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: jsonData
+      }
+    );
 
     if (response.ok) {
       // Handle successful submission
@@ -169,7 +174,7 @@ async function updateCommentsSection(gameId) {
   try {
     // Gets the updated comments from the databse, for the specific gameId passed in
     const commentsResponse = await fetch(
-      `http://localhost:8080/comments/?id=${gameId}`
+      `https://teched-week04-project.onrender.com/comments/?id=${gameId}`
     );
     const comments = await commentsResponse.json();
 
