@@ -25,14 +25,67 @@ app.get("/gamewinners", function (request, response) {
 
   response.json(gameWinners);
 });
+
+app.get("/gamewinnersjoined", function (request, response) {
+  console.log("Getting game winners.");
+  const joinedWinnerData = db
+    .prepare(
+      `
+  SELECT
+    games.id AS id,
+    games.name AS name,
+    games.win_year AS year,
+    games.imageUrl AS image,
+    platforms.name AS platform,
+    developers.name AS developer,
+    genres.name AS genre
+  FROM games
+  JOIN platforms ON games.platform_id = platforms.id
+  JOIN developers ON games.developer_id = developers.id
+  JOIN genres ON games.genre_id = genres.id
+  `
+    )
+    .all();
+
+  response.json(joinedWinnerData);
+});
+
 // Comments
 app.get("/comments", function (request, response) {
+  console.log(request.query);
   console.log("Getting user comments.");
-  response.json("Hi comments");
+  const comments = db
+    .prepare(`SELECT * FROM comments WHERE game_id = ${request.query.id}`)
+    .all();
+  console.log(comments);
+  // response.json
+  response.json(comments);
+
+  // response.json(comments);
 });
+
+// app.get("/comments", function (req, res) {
+// });
 
 // Post comments to database
 app.post("/comments", function (request, response) {
+  console.log(request.body);
+  response.json(request.body);
   console.log("Posting comments.");
-  response.json("Posting comments");
+
+  const insertNewComment = db.prepare(`
+      INSERT INTO comments (game_id, username, comment) VALUES (?, ?, ?)
+  `);
+
+  insertNewComment.run(
+    request.body.game_id,
+    request.body.username,
+    request.body.comment
+  );
+  if (err) {
+    console.error(err.message);
+    response.status(500).send("Error inserting comment");
+  } else {
+    response.send("Success");
+  }
 });
