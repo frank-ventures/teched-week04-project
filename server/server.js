@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
+import Database from "better-sqlite3";
 
+const db = new Database("database.db");
 const app = express();
 
 app.use(express.json());
@@ -19,7 +21,9 @@ app.get("/", function (request, response) {
 // Games
 app.get("/gamewinners", function (request, response) {
   console.log("Getting game winners.");
-  response.json("Hi games");
+  const gameWinners = db.prepare("SELECT * FROM games").all();
+
+  response.json(gameWinners);
 });
 // Comments
 app.get("/comments", function (request, response) {
