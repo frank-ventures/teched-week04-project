@@ -7,7 +7,8 @@ async function getGames() {
 
   console.log("app.js Getting games...");
   const gamesresponse = await fetch(
-    "https://teched-week04-project.onrender.com/gamewinnersjoined"
+    // "https://teched-week04-project.onrender.com/gamewinnersjoined"
+    "http://localhost:8080/gamewinnersjoined"
   );
   const gotyWinners = await gamesresponse.json();
   console.log("GOTY details array here:", gotyWinners);
@@ -17,21 +18,38 @@ async function getGames() {
     // mainDiv is the 'card' which contains the GOTY info and the Comments.
     const mainDiv = document.createElement("div");
     mainDiv.classList.add("game-wrapper");
+    mainDiv.classList.add("flex");
     mainDiv.classList.add(`game-id-${game.id}`);
 
+    console.log(game.image);
+
     // Declaring these two allows us to add everything all in one go, instead of multiple lines of '.createElement', '.classList.add', '.textContent' and '.appendChild'.
-    let form = `      <div class="comment-form">
-    <form class="new-comment game-comment-id-${game.id}">
-      <label for="username">Username:</label
-      ><input type="text" name="username" placeholder="username" />
-      <label for="comment">Comment:</label
-      ><input type="text" name="comment" placeholder="comment" />
+    let oneCodeToRuleThemAll = `
+    <p class="win-year regular-text">Year: <span class="year-number">${game.year}</span></p>
+    <img class="game-img" src="${game.image}" alt="${game.name}">
+    <h2 class="game-name">${game.name}</h2>
+    <div class="details-wrapper flex">
+      <p class="regular-text">Genre: </p><p class="right-side">${game.genre}</p>
+      <p class="regular-text">Developer: </p><p class="right-side">${game.developer}</p>
+      <p class="regular-text">Platform: </p><p class="right-side">${game.platform}</p>
+    </div>`;
+
+    let form = `
+    <div class="comment-form flex">
+    <button class="toggle-comments toggle-comment-id-${game.id}">Toggle Comments</button>
+    <form class="new-comment game-comment-id-${game.id} flex hidden">
+      <p class="regular-text">Say something!</p>
+      <div class="username flex">
+        <label for="username" class="regular-text">Username:</label>
+        <input type="text" name="username" placeholder="username" />
+      </div>
+      <div class="comment flex">
+        <label for="comment" class="regular-text">Comment:</label>
+        <input type="text" name="comment" placeholder="comment" />
+      </div>
       <button type="submit">Send comment!</button>
     </form>
-    <button class="toggle-comments toggle-comment-id-${game.id}">Toggle Comments</button>
   </div>`;
-
-    let oneCodeToRuleThemAll = `<p class="win-year">Winning year: <span class="year-number">${game.year}</span></p><img class="game-img" src="${game.image}" alt="${game.name}"><h2 class="game-name">${game.name}</h2><div class="details-wrapper"><p>Genre: ${game.genre}</p><p>Developer: ${game.developer}</p><p>Platform: ${game.platform}</p></div>`;
 
     // Add things to the page.
     mainDiv.insertAdjacentHTML("afterbegin", oneCodeToRuleThemAll);
@@ -68,10 +86,11 @@ function toggleComments(gameId) {
   const gameWrapper = document.querySelector(`.game-id-${gameId}`);
 
   if (gameWrapper) {
-    // Clear existing comments
     gameWrapper
       .querySelectorAll(".comments-individual")
       .forEach((comment) => comment.classList.toggle("hidden"));
+    const form = document.querySelector(".new-comment");
+    form.classList.toggle("hidden");
   }
 }
 
@@ -136,7 +155,7 @@ async function updateCommentsSection(gameId) {
       // Append the updated comments to the game wrapper
       comments.forEach((comment) => {
         const newComment = `
-          <div class="comments-individual hidden">
+          <div class="comments-individual hidden flex">
             <p class="intro-comment">Comment from: ${comment.username}</p>
             <p>${comment.comment}</p>
           </div>

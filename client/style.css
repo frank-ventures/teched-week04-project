@@ -6,65 +6,101 @@
 
   font-family: sans-serif;
 }
+
+body {
+  background-color: RGB(27, 40, 56);
+}
+
+header {
+  font-size: 0.75rem;
+  background-color: RGB(23, 26, 33);
+  color: RGB(199, 213, 224);
+}
+
 h1 {
-  background-color: orange;
+  padding: 20px;
+  text-align: center;
+}
+
+h3 {
   padding: 10px;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.regular-text {
+  font-size: 0.9rem;
+}
+
+.header-subtext {
+  background-color: RGBA(102, 192, 244, 0.5);
+  color: RGB(199, 213, 224);
+
+  padding: 0px 10px 10px 10px;
+  margin: 10px;
+
+  text-shadow: 0 1px 5px black;
+  text-align: center;
+}
+
+.header-subtext a {
+  color: RGB(199, 213, 224);
 }
 
 /* Container for all the cards */
 #gameWrapper {
   width: 100vw;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
 
   padding: 10px;
-
-  background-color: lightgreen;
 }
 
 /* Class for each individual card.*/
 .game-wrapper {
   height: auto;
-
-  background-color: rgba(255, 255, 255, 0.9);
+  /* background-color: RGB(102, 192, 244); */
+  background-color: RGB(23, 26, 33);
   box-shadow: 1px 1px 10px grey;
+  color: RGB(199, 213, 224);
 
-  padding: 10px;
-
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   gap: 15px;
 
-  border-top: 3px solid rgba(119, 119, 119, 0.6);
+  border-top: 1px solid RGBA(199, 213, 224, 0.7);
   width: 95%;
-}
-
-/* "Won in" paragraph */
-.win-year {
-  color: orange;
 }
 
 /* Win Year Number */
 .year-number {
-  color: red;
-  font-size: 2rem;
-  font-weight: 600;
+  color: RGB(102, 192, 244);
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 5px black;
 }
 
 /* Game Image */
 .game-img {
+  width: 100%;
+
+  box-shadow: 1px 1px 5px black;
 }
 
 /* Game Title */
 .game-name {
-  color: blue;
-  font-weight: 400;
+  color: RGB(102, 192, 244);
+  border-bottom: 1px solid RGB(199, 213, 224);
+
+  width: 100%;
+  font-weight: 200;
   font-size: 2.5rem;
 }
 
@@ -72,40 +108,72 @@ h1 {
   width: 100%;
   padding: 10px;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   text-align: center;
+  font-style: italic;
 
-  border-bottom: 3px solid grey;
+  border-bottom: 1px solid RGB(199, 213, 224);
 }
+
+.right-side {
+  align-self: flex-end;
+  font-style: normal;
+  font-size: 1.25rem;
+}
+
 .comment-form {
   width: 100%;
+  padding: 10px;
 
-  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
-form {
-  /* padding: 30px; */
+
+.comment,
+.username {
+  width: 100%;
   gap: 10px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+form {
+  gap: 15px;
 
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form p {
+  font-style: italic;
 }
 
 input {
-  width: 20%;
+  width: 70%;
+  padding: 1%;
+}
+
+button {
+  cursor: pointer;
+  background-color: RGB(42, 71, 94);
+  color: RGB(199, 213, 224);
+  border: none;
+  padding: 2.5%;
+  font-weight: 300;
+  border-radius: 5px;
+}
+
+button:hover {
+  box-shadow: 0 1px 16px 0 RGB(102, 192, 244);
 }
 
 .comments-individual {
   width: 100%;
-  display: flex;
+
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
