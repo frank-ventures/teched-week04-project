@@ -7,8 +7,7 @@ async function getGames() {
 
   console.log("app.js Getting games...");
   const gamesresponse = await fetch(
-    // "https://teched-week04-project.onrender.com/gamewinnersjoined"
-    "http://localhost:8080/gamewinnersjoined"
+    "https://teched-week04-project.onrender.com/gamewinnersjoined"
   );
   const gotyWinners = await gamesresponse.json();
   console.log("GOTY details array here:", gotyWinners);
