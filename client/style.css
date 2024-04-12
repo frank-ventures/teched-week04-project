@@ -127,3 +127,7 @@ input {
 
   font-style: italic;
 }
+
+.hidden {
+  display: none;
+}
