@@ -47,9 +47,13 @@ async function getGames() {
         <label for="comment" class="regular-text">Comment:</label>
         <input type="text" name="comment" placeholder="comment" />
       </div>
-      <button type="submit">Send comment!</button>
+      <div class="submit flex">
+      <button type="submit" id="submitComment-${game.id}">Send comment!</button>
+      </div>
     </form>
-  </div>`;
+    <div class="comments-wrapper hidden"></div>
+  </div>
+  `;
 
     // Add things to the page.
     mainDiv.insertAdjacentHTML("afterbegin", oneCodeToRuleThemAll);
@@ -86,11 +90,10 @@ function toggleComments(gameId) {
   const gameWrapper = document.querySelector(`.game-id-${gameId}`);
 
   if (gameWrapper) {
-    gameWrapper
-      .querySelectorAll(".comments-individual")
-      .forEach((comment) => comment.classList.toggle("hidden"));
-    const form = document.querySelector(".new-comment");
+    const form = gameWrapper.querySelector(".new-comment");
     form.classList.toggle("hidden");
+    const allComments = gameWrapper.querySelector(".comments-wrapper");
+    allComments.classList.toggle("hidden");
   }
 }
 
@@ -127,6 +130,21 @@ async function handleFormSubmission(event, gameId) {
     if (response.ok) {
       console.log("Comment submitted successfully");
       updateCommentsSection(gameId);
+      // Clears the input fields after
+      document.querySelector(`.game-comment-id-${gameId}`).reset();
+      // Get current button
+      const addCommentButton = document.getElementById(
+        `submitComment-${gameId}`
+      );
+      const successPopup = document.createElement("p");
+      successPopup.classList.add("success-popup");
+      successPopup.textContent = "Comment successful!";
+      addCommentButton.insertAdjacentElement("afterend", successPopup);
+      // show your thing
+      setTimeout(function name(params) {
+        // remove your thing
+        successPopup.remove();
+      }, 1500);
     } else {
       console.error("Failed to submit comment");
     }
@@ -145,6 +163,7 @@ async function updateCommentsSection(gameId) {
 
     // Find the matching game wrapper based on the gameId
     const gameWrapper = document.querySelector(`.game-id-${gameId}`);
+    let commentWrapper = gameWrapper.querySelector(".comments-wrapper");
 
     if (gameWrapper) {
       // Clear existing comments
@@ -153,15 +172,24 @@ async function updateCommentsSection(gameId) {
         .forEach((comment) => comment.remove());
 
       // Append the updated comments to the game wrapper
-      comments.forEach((comment) => {
+      for (const comment of comments) {
         const newComment = `
-          <div class="comments-individual hidden flex">
-            <p class="intro-comment">Comment from: ${comment.username}</p>
-            <p>${comment.comment}</p>
+          <div class="comments-individual flex">
+            <p class="comment-from">Comment from: ${comment.username}</p>
+            <p class="comment-content">${comment.comment}</p>
           </div>
         `;
-        gameWrapper.insertAdjacentHTML("beforeend", newComment);
-      });
+        commentWrapper.insertAdjacentHTML("beforeend", newComment);
+      }
+      // comments.forEach((comment) => {
+      //   const newComment = `
+      //     <div class="comments-individual hidden flex">
+      //       <p class="intro-comment">Comment from: ${comment.username}</p>
+      //       <p>${comment.comment}</p>
+      //     </div>
+      //   `;
+      //   commentWrapper.insertAdjacentHTML("beforeend", newComment);
+      // });
     } else {
       console.error("Game wrapper not found");
     }

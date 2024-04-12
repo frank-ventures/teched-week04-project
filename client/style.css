@@ -56,7 +56,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 1.5rem;
 
   padding: 10px;
 }
@@ -73,7 +73,7 @@ h3 {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 15px;
+  gap: 0.25rem;
 
   border-top: 1px solid RGBA(199, 213, 224, 0.7);
   width: 95%;
@@ -91,13 +91,14 @@ h3 {
 .game-img {
   width: 100%;
 
-  box-shadow: 1px 1px 5px black;
+  box-shadow: 0px 0px 5px -4px white;
 }
 
 /* Game Title */
 .game-name {
   color: RGB(102, 192, 244);
   border-bottom: 1px solid RGB(199, 213, 224);
+  padding: 5%;
 
   width: 100%;
   font-weight: 200;
@@ -106,7 +107,7 @@ h3 {
 
 .details-wrapper {
   width: 100%;
-  padding: 10px;
+  padding: 1.5%;
 
   flex-direction: column;
   align-items: flex-start;
@@ -119,7 +120,17 @@ h3 {
 .right-side {
   align-self: flex-end;
   font-style: normal;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+}
+
+.comments-wrapper {
+  background-color: RGB(27, 40, 56);
+  padding: 5px;
+  max-height: 150px;
+  width: 100%;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  border: 1px solid RGBA(199, 213, 224, 0.25);
 }
 
 .comment-form {
@@ -132,11 +143,12 @@ h3 {
 }
 
 .comment,
-.username {
+.username,
+.submit {
   width: 100%;
   gap: 10px;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 form {
@@ -153,8 +165,17 @@ form p {
 }
 
 input {
+  background-color: RGBA(42, 71, 94, 0.5);
+  color: RGB(199, 213, 224);
+  font-style: italic;
+  border: none;
+  border-radius: 3px;
   width: 70%;
   padding: 1%;
+}
+
+input:focus {
+  outline: 1px solid RGB(102, 192, 244);
 }
 
 button {
@@ -173,22 +194,27 @@ button:hover {
 
 .comments-individual {
   width: 100%;
+  margin-bottom: 20px;
 
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  gap: 20px;
+  gap: 10px;
+  border-bottom: 1px solid grey;
 }
 
-.comments-individual p {
-  height: 100%;
-  background-color: orange;
+.comment-content {
+  width: 100%;
   padding: 10px;
+  font-size: 1.5rem;
+  width: 100%;
 }
 
-.intro-comment {
-  width: 20%;
+.comment-from {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
   text-align: start;
   align-self: flex-start;
   justify-self: flex-end;
@@ -196,6 +222,75 @@ button:hover {
   font-style: italic;
 }
 
+.success-popup {
+  background-color: RGB(199, 213, 224);
+  color: RGB(27, 40, 56);
+  padding: 2%;
+  border: 1px solid RGB(199, 213, 224);
+  border-radius: 1rem;
+  box-shadow: 0px 1px 1px 5px RGB(102, 192, 244);
+}
+
 .hidden {
   display: none;
+}
+
+@media (min-width: 600px) {
+  h2.game-name {
+    padding: 1%;
+  }
+  .regular-text {
+    font-size: 1rem;
+  }
+  /* Container for all the cards */
+  #gameWrapper {
+    /* width: 100vw; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 6rem;
+  }
+
+  .game-wrapper {
+    gap: 1rem;
+    width: 35%;
+    transition: all 1s;
+  }
+  .game-wrapper:hover {
+    width: 49%;
+    box-shadow: 1px 1px 100px grey;
+  }
+  .game-wrapper:hover p {
+    font-size: 1.5rem;
+    transition: all 1s;
+  }
+  .game-wrapper:hover .comment-from {
+    font-size: 1rem;
+    transition: all 1s;
+  }
+  .game-wrapper:hover .comments-individual {
+    gap: 1px;
+    padding-bottom: 10px;
+  }
+
+  .game-wrapper:hover .comments-wrapper {
+    max-height: 300px;
+    transition: all 1s;
+  }
+
+  .details-wrapper {
+    padding: 1%;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .right-side {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1.2rem;
+  }
 }

@@ -46,4 +46,7 @@ This was because I was using a 'for each' loop which contained async functions w
 
 Query Parameters - https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
 InnerHTML - https://www.w3schools.com/jsref/prop_html_innerhtml.asp
-insertAdjacentHTML - https://www.freecodecamp.org/news/javascript-insertadjacenthtml-method-efficient-dom-manipulation/
+insertAdjacentHTML - https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement , https://www.freecodecamp.org/news/javascript-insertadjacenthtml-method-efficient-dom-manipulation/ and https://www.codingnepalweb.com/build-a-notes-app-in-html-css-javascript/
+For the Game of the Year content - https://en.wikipedia.org/wiki/Golden_Joystick_Award_for_Game_of_the_Year
+For the Images - https://www.steamgriddb.com/
+For the CSS color scheme: https://colorswall.com/palette/193/ and https://store.steampowered.com
