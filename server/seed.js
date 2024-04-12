@@ -121,7 +121,15 @@ const populateGames = db.prepare(`
 	INSERT INTO games (name, win_year, imageUrl, platform_id, developer_id, publisher_id, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?)
 `);
 // platform, developer, publisher, genre
-populateGames.run("Baldur's Gate 3", 2023, "something.jpg", 2, 1, 1, 1);
+populateGames.run(
+  "Baldur's Gate 3",
+  2023,
+  "https://cdn2.steamgriddb.com/thumb/085ac30c624e8cd17a8ece189b9498e1.webm",
+  2,
+  1,
+  1,
+  1
+);
 populateGames.run("Elden Ring", 2022, "something.jpg", 2, 2, 1, 2);
 populateGames.run("Resident Evil Village", 2021, "something.jpg", 2, 3, 1, 3);
 populateGames.run("The Last Of Us Part II", 2020, "something.jpg", 3, 4, 1, 4);
