@@ -1,4 +1,6 @@
+/* ---------------------- */
 /* Page Settings */
+/* ---------------------- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,6 +29,9 @@ h3 {
   text-align: center;
 }
 
+/* ---------------------- */
+/* Shared classes */
+/* ---------------------- */
 .flex {
   display: flex;
 }
@@ -35,6 +40,9 @@ h3 {
   font-size: 0.9rem;
 }
 
+/* ---------------------- */
+/* Header content */
+/* ---------------------- */
 .header-subtext {
   background-color: RGBA(102, 192, 244, 0.5);
   color: RGB(199, 213, 224);
@@ -50,7 +58,9 @@ h3 {
   color: RGB(199, 213, 224);
 }
 
-/* Container for all the cards */
+/* ---------------------- */
+/* Initial container for all the cards */
+/* ---------------------- */
 #gameWrapper {
   width: 100vw;
   flex-direction: column;
@@ -61,10 +71,11 @@ h3 {
   padding: 10px;
 }
 
+/* ---------------------- */
 /* Class for each individual card.*/
+/* ---------------------- */
 .game-wrapper {
   height: auto;
-  /* background-color: RGB(102, 192, 244); */
   background-color: RGB(23, 26, 33);
   box-shadow: 1px 1px 10px grey;
   color: RGB(199, 213, 224);
@@ -79,7 +90,9 @@ h3 {
   width: 95%;
 }
 
-/* Win Year Number */
+/* ---------------------- */
+/* Win Year Number (in the <span>) */
+/* ---------------------- */
 .year-number {
   color: RGB(102, 192, 244);
   font-size: 3rem;
@@ -87,14 +100,18 @@ h3 {
   text-shadow: 1px 1px 5px black;
 }
 
+/* ---------------------- */
 /* Game Image */
+/* ---------------------- */
 .game-img {
   width: 100%;
 
   box-shadow: 0px 0px 5px -4px white;
 }
 
+/* ---------------------- */
 /* Game Title */
+/* ---------------------- */
 .game-name {
   color: RGB(102, 192, 244);
   border-bottom: 1px solid RGB(199, 213, 224);
@@ -105,6 +122,9 @@ h3 {
   font-size: 2.5rem;
 }
 
+/* ---------------------- */
+/* Holds Genre, Developer, Platform */
+/* ---------------------- */
 .details-wrapper {
   width: 100%;
   padding: 1.5%;
@@ -117,12 +137,28 @@ h3 {
   border-bottom: 1px solid RGB(199, 213, 224);
 }
 
+/* Puts the table data on the right */
 .right-side {
   align-self: flex-end;
   font-style: normal;
   font-size: 1.15rem;
 }
 
+/* ---------------------- */
+/* Larger container from the 'Toggle Comments' button, form, and user comments */
+/* ---------------------- */
+.comment-form {
+  width: 100%;
+  padding: 10px;
+
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ---------------------- */
+/* Scrollable box which holds the user comments */
+/* ---------------------- */
 .comments-wrapper {
   background-color: RGB(27, 40, 56);
   padding: 5px;
@@ -133,15 +169,7 @@ h3 {
   border: 1px solid RGBA(199, 213, 224, 0.25);
 }
 
-.comment-form {
-  width: 100%;
-  padding: 10px;
-
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
+/* User input fields */
 .comment,
 .username,
 .submit {
@@ -151,6 +179,9 @@ h3 {
   align-items: center;
 }
 
+/* ---------------------- */
+/* General user input settings */
+/* ---------------------- */
 form {
   gap: 15px;
 
@@ -192,6 +223,9 @@ button:hover {
   box-shadow: 0 1px 16px 0 RGB(102, 192, 244);
 }
 
+/* ---------------------- */
+/* Container class applied to each individual comment */
+/* ---------------------- */
 .comments-individual {
   width: 100%;
   margin-bottom: 20px;
@@ -204,6 +238,7 @@ button:hover {
   border-bottom: 1px solid grey;
 }
 
+/* The message within comments-individual */
 .comment-content {
   width: 100%;
   padding: 10px;
@@ -211,6 +246,7 @@ button:hover {
   width: 100%;
 }
 
+/* The name within comments-individual */
 .comment-from {
   width: 100%;
   padding: 10px;
@@ -235,6 +271,9 @@ button:hover {
   display: none;
 }
 
+/* ---------------------- */
+/* Mobile and desktop friendly whaaaatttt */
+/* ---------------------- */
 @media (min-width: 600px) {
   h2.game-name {
     padding: 1%;
@@ -242,15 +281,14 @@ button:hover {
   .regular-text {
     font-size: 1rem;
   }
-  /* Container for all the cards */
   #gameWrapper {
-    /* width: 100vw; */
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 6rem;
   }
 
+  /* Ooooh fancy enlargement settings */
   .game-wrapper {
     gap: 1rem;
     width: 35%;

@@ -1,3 +1,6 @@
+// ----------------------
+// Import the things!
+// ----------------------
 import express from "express";
 import cors from "cors";
 import Database from "better-sqlite3";
@@ -6,9 +9,12 @@ const db = new Database("database.db");
 const app = express();
 
 app.use(express.json());
-app.use(cors()); // allows the client to communicate with the server without being blocked
+// Allows the client to communicate with the server without being blocked.
+app.use(cors());
 
-// Setup and initialise server
+// ----------------------
+// Setup and initialise server.
+// ----------------------
 app.listen(8080, function () {
   console.log("App is running on 8080");
 });
@@ -17,8 +23,9 @@ app.get("/", function (request, response) {
   response.json("Hi mate");
 });
 
-// Get information from database
-// Games
+// ----------------------
+// Get information from Games database.
+// ----------------------
 app.get("/gamewinners", function (request, response) {
   console.log("Getting game winners.");
   const gameWinners = db.prepare("SELECT * FROM games").all();
@@ -26,6 +33,9 @@ app.get("/gamewinners", function (request, response) {
   response.json(gameWinners);
 });
 
+// ----------------------
+// Get information from Games database, joined with other table data.
+// ----------------------
 app.get("/gamewinnersjoined", function (request, response) {
   console.log("Getting game winners.");
   const joinedWinnerData = db
@@ -50,7 +60,9 @@ app.get("/gamewinnersjoined", function (request, response) {
   response.json(joinedWinnerData);
 });
 
-// Comments
+// ----------------------
+// Get information from Comments database
+// ----------------------
 app.get("/comments", function (request, response) {
   console.log(request.query);
   console.log("Getting user comments.");
@@ -58,16 +70,13 @@ app.get("/comments", function (request, response) {
     .prepare(`SELECT * FROM comments WHERE game_id = ${request.query.id}`)
     .all();
   console.log(comments);
-  // response.json
-  response.json(comments);
 
-  // response.json(comments);
+  response.json(comments);
 });
 
-// app.get("/comments", function (req, res) {
-// });
-
+// ----------------------
 // Post comments to database
+// ----------------------
 app.post("/comments", function (request, response) {
   console.log(request.body);
   response.json(request.body);

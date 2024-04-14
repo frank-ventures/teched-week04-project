@@ -1,7 +1,9 @@
 import Database from "better-sqlite3";
 const db = new Database("database.db");
 
-// Create the databases
+// ----------------------
+// Create the database and tables.
+// ----------------------
 db.exec(`
 	CREATE TABLE IF NOT EXISTS platforms (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,7 +55,9 @@ db.exec(`
 	)
 `);
 
-// Put data into the Platforms table
+// ----------------------
+// Put data into the Platforms table.
+// ----------------------
 const populatePlatforms = db.prepare(`
 	INSERT INTO platforms (name) VALUES (?)
 `);
@@ -71,7 +75,9 @@ populatePlatforms.run("Game Boy");
 populatePlatforms.run("Super NES");
 populatePlatforms.run("Sega Mega Drive");
 
-// Put data into the Developers table
+// ----------------------
+// Put data into the Developers table.
+// ----------------------
 const populateDevelopers = db.prepare(`
 	INSERT INTO developers (name) VALUES (?)
 `);
@@ -93,13 +99,18 @@ populateDevelopers.run("DMA Design");
 populateDevelopers.run("Sonic Team");
 populateDevelopers.run("Park Place Productions");
 
+// ----------------------
+// Ended up not using this.
+// ----------------------
 const populatePublishers = db.prepare(`
 	INSERT INTO publishers (name) VALUES (?)
 `);
 
 populatePublishers.run("testPub");
 
-// Put data into the Genres table
+// ----------------------
+// Put data into the Genres table.
+// ----------------------
 const populateGenres = db.prepare(`
 	INSERT INTO genres (name) VALUES (?)
 `);
@@ -116,11 +127,13 @@ populateGenres.run("Platformer");
 populateGenres.run("Fighting");
 populateGenres.run("Sports");
 
+// ----------------------
 // Put data into the Games table
+// ----------------------
 const populateGames = db.prepare(`
 	INSERT INTO games (name, win_year, imageUrl, platform_id, developer_id, publisher_id, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?)
 `);
-// platform, developer, publisher, genre
+
 populateGames.run(
   "Baldur's Gate 3",
   2023,
@@ -365,7 +378,9 @@ populateGames.run(
   11
 );
 
-// Put data into the Comments table
+// ----------------------
+// Put data into the Comments table.
+// ----------------------
 const populateComments = db.prepare(`
 	INSERT INTO comments (game_id, username, comment, likes) VALUES (?, ?, ?, ?)
 `);

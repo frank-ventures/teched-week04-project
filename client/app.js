@@ -1,7 +1,12 @@
+// Get the main element from the HTML
+// ----------------------
 const gameWrapper = document.getElementById("gameWrapper");
+
+// ----------------------
 
 // Fetches Game Of The Year data from the server.
 // Gets the 'joined' GOTY data with publisher, genre etc info.
+// ----------------------
 async function getGames() {
   gameWrapper.innerHTML = "";
 
@@ -20,9 +25,11 @@ async function getGames() {
     mainDiv.classList.add("flex");
     mainDiv.classList.add(`game-id-${game.id}`);
 
+    // Checking the image url.
     console.log(game.image);
 
     // Declaring these two allows us to add everything all in one go, instead of multiple lines of '.createElement', '.classList.add', '.textContent' and '.appendChild'.
+    // Displays the Game of the Year data.
     let oneCodeToRuleThemAll = `
     <p class="win-year regular-text">Year: <span class="year-number">${game.year}</span></p>
     <img class="game-img" src="${game.image}" alt="${game.name}">
@@ -33,6 +40,7 @@ async function getGames() {
       <p class="regular-text">Platform: </p><p class="right-side">${game.platform}</p>
     </div>`;
 
+    // Creates a linked comment form, and provides a place for comments to attach to.
     let form = `
     <div class="comment-form flex">
     <button class="toggle-comments toggle-comment-id-${game.id}">Toggle Comments</button>
@@ -57,9 +65,9 @@ async function getGames() {
     // Add things to the page.
     mainDiv.insertAdjacentHTML("afterbegin", oneCodeToRuleThemAll);
     mainDiv.insertAdjacentHTML("beforeend", form);
-    // Putting it on the page
     gameWrapper.appendChild(mainDiv);
     // Get the comments and put them on the page.
+    // 'game.id' I love you.
     updateCommentsSection(game.id);
 
     // Add an event listener to each individual comment toggle button
@@ -79,9 +87,14 @@ async function getGames() {
     );
   }
 }
-// Go get them!
+// ----------------------
+// Go get them games!
+// ----------------------
 getGames();
 
+// ----------------------
+// Allows the 'Toggle Comments' function to work on individual cards.
+// ----------------------
 function toggleComments(gameId) {
   console.log("current Game ID: ", gameId);
 
@@ -96,17 +109,21 @@ function toggleComments(gameId) {
   }
 }
 
-// For the comment 'forms'
+// ----------------------
+// Handles the comment 'form' submissions on each game card.
+// ----------------------
 async function handleFormSubmission(event, gameId) {
   event.preventDefault();
   console.log(`submitted comments for Game ID ${gameId}`);
 
+  // Gets the data
   const formTarget = event.target;
   const formData = new FormData(formTarget);
   const comment = formData.get("comment");
   const username = formData.get("username");
   console.log("submitting:", gameId, username, comment);
 
+  // Bit of help from old Gerald P. Taylor here using the try/catch statment.
   try {
     const jsonData = JSON.stringify({
       game_id: gameId,
@@ -128,6 +145,7 @@ async function handleFormSubmission(event, gameId) {
 
     if (response.ok) {
       console.log("Comment submitted successfully");
+      // If successful, updates the comments section.
       updateCommentsSection(gameId);
       // Clears the input fields after
       document.querySelector(`.game-comment-id-${gameId}`).reset();
@@ -135,13 +153,13 @@ async function handleFormSubmission(event, gameId) {
       const addCommentButton = document.getElementById(
         `submitComment-${gameId}`
       );
+      // Creates a 'success' message next to the current button.
       const successPopup = document.createElement("p");
       successPopup.classList.add("success-popup");
       successPopup.textContent = "Comment successful!";
       addCommentButton.insertAdjacentElement("afterend", successPopup);
-      // show your thing
-      setTimeout(function name(params) {
-        // remove your thing
+      setTimeout(function () {
+        // Removes the message
         successPopup.remove();
       }, 1500);
     } else {
@@ -152,9 +170,11 @@ async function handleFormSubmission(event, gameId) {
   }
 }
 
+// ----------------------
+// Gets the updated comments from the databse, for the specific gameId passed in.
+// ----------------------
 async function updateCommentsSection(gameId) {
   try {
-    // Gets the updated comments from the databse, for the specific gameId passed in
     const commentsResponse = await fetch(
       `https://teched-week04-project.onrender.com/comments/?id=${gameId}`
     );
@@ -180,15 +200,6 @@ async function updateCommentsSection(gameId) {
         `;
         commentWrapper.insertAdjacentHTML("beforeend", newComment);
       }
-      // comments.forEach((comment) => {
-      //   const newComment = `
-      //     <div class="comments-individual hidden flex">
-      //       <p class="intro-comment">Comment from: ${comment.username}</p>
-      //       <p>${comment.comment}</p>
-      //     </div>
-      //   `;
-      //   commentWrapper.insertAdjacentHTML("beforeend", newComment);
-      // });
     } else {
       console.error("Game wrapper not found");
     }
@@ -196,3 +207,5 @@ async function updateCommentsSection(gameId) {
     console.error("Error updating comments section:", error);
   }
 }
+
+// Thanks for playing!
