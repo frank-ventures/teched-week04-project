@@ -29,6 +29,7 @@ I kept track of my thoughts and tasks here: [https://frankjs.notion.site/Day-Sev
 ### What went well
 
 **Beginnings**
+
 At the start of the project I wrote out the idea I had, what I wanted to achieve, and the smaller steps I needed to take to achieve the functionality I wanted.
 
 Doing this first helped me to see which tables I needed in the database.
@@ -36,6 +37,7 @@ Doing this first helped me to see which tables I needed in the database.
 Writing my seed.js to create my database was fairly simple, however, a bit laborious given how many entries I had, and that I was joining tables by hand.
 
 **Functionality**
+
 I was able to find solutions for some of the bugs I was having, particularly when the data was not displaying in the correct order due to a 'for each' loop being used within an async function.
 
 I was able to persist with some of the more complex functionailty toward the end of the project.
@@ -45,11 +47,13 @@ I realised that I had far too many lines of code just to put HTML and content on
 This can be seen where I've created the display for each game, and the form for each game. In my opinion this created far more readable and editable code, which came in handy later in the project for some layout and formatting. (I'm aware of how 'hacky' this method might actually be!)
 
 **Identification, please.**
+
 Using the Game_ID within the app.js was a huge key to getting the functionality correct.
 
 Being able to attach it to various parts of the HTML as unique identifier, and also pass it aound in various functions, really unlocked the inner working of comments, buttons and displays.
 
 **Design**
+
 Once the site was functioning, it was a case of spending some time playing with the CSS to tidy it up and make it look appealing!
 
 I was pleased with the 'card' style of display, the effect that box-shadows gave to the content, and the way the content 'grew' in size on hover.
@@ -61,14 +65,17 @@ Plenty of these this week!! Including the extra layers of having a server and da
 What helped, as always, was to tackle the problem in tiny chunks, getting small bits working at a time.
 
 **Linking comments**
+
 In my project, I wanted a way to link comments to the game they were made for. I had help from Tim who told me about Query Parameters (listed below). Once implemented with the right ID these worked perfectly!
 
 **Getting comments to submit**
+
 I was encountering a lot of issues with user comment submission being parsed, and passed, incorrectly!
 It took a lot of chipping away at very tiny possibilities, such as eliminating trailing commas in the app.js code, ensuring I was passing the correct variables WITH the correct column names, and making sure the server was receiving the correct data, and passing it to the database correctly.
 Eventually I got everything tidied, and got the comments saving correctly through lots of small changes.
 
 **Order. Order!**
+
 A persistent issue was that on loading each of the games to display on the page, the order would sometimes be incorrect.
 For example, the "1997" entry could show before "2003", for example.
 This was because I was using a 'for each' loop which contained async functions within. Changing to a 'for of' loop solved this issue. I also implemented this method when loading the comments.
@@ -89,9 +96,15 @@ Once I brainstormed on the theme of games, things fell into place nicely!
 ### Resources
 
 Query Parameters - https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
+
 InnerHTML - https://www.w3schools.com/jsref/prop_html_innerhtml.asp
+
 insertAdjacentHTML - https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement , https://www.freecodecamp.org/news/javascript-insertadjacenthtml-method-efficient-dom-manipulation/ and https://www.codingnepalweb.com/build-a-notes-app-in-html-css-javascript/
+
 For the Game of the Year content - https://en.wikipedia.org/wiki/Golden_Joystick_Award_for_Game_of_the_Year
+
 For the Images - https://www.steamgriddb.com/
+
 For the CSS color scheme: https://colorswall.com/palette/193/ and https://store.steampowered.com
+
 Clearing the form after submission - https://stackoverflow.com/questions/14589193/clearing-my-form-inputs-after-submission
