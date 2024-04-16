@@ -17,11 +17,11 @@ I kept track of my thoughts and tasks here: [https://frankjs.notion.site/Day-Sev
 ### Features!
 
 - There's a client, a server and a database!
-- The database has multiples tables of information for the games, and a table for comments.
+- The database has multiple tables of information for the games, and a table for comments.
 - The server takes GET requests to retrieve joined Game information, and Comments.
 - The server takes POST requests to add comments to the database.
 - The server uses a query to match comments to the game they are for.
-- The client build the display of information as it retrieves it from the databse.
+- The client builds the display of information as it retrieves it from the database.
 - The comments update when a user completes the form.
 - The page follows the theming of Valves Steam platform.
 - I ensured parts of the UI gave the user some feedback, including 'hover' changes on buttons, a pop-up to confirm a comment had been submitted, and on desktop some 'hover' emphasis on the game displays.
@@ -40,7 +40,7 @@ Writing my seed.js to create my database was fairly simple, however, a bit labor
 
 I was able to find solutions for some of the bugs I was having, particularly when the data was not displaying in the correct order due to a 'for each' loop being used within an async function.
 
-I was able to persist with some of the more complex functionailty toward the end of the project.
+I was able to persist with some of the more complex functionality toward the end of the project.
 
 I realised that I had far too many lines of code just to put HTML and content on the page. While methods like '.appendChild' have worked in the past, I moved to use '.innerHTML' and '.insertAdjacentHTML' combined with variables containing template literals.
 
@@ -50,7 +50,7 @@ This can be seen where I've created the display for each game, and the form for 
 
 Using the Game_ID within the app.js was a huge key to getting the functionality correct.
 
-Being able to attach it to various parts of the HTML as unique identifier, and also pass it aound in various functions, really unlocked the inner working of comments, buttons and displays.
+Being able to attach it to various parts of the HTML as unique identifier, and also pass it around in various functions, really unlocked the inner working of comments, buttons and displays.
 
 **Design**
 
